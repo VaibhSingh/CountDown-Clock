@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>CountDown Clock</title>
+  
+</head>
+<style type="text/css">
+	.clockStyle{
+		font-size: 50px;
+		margin: 0 auto;
+		padding: 10px 
+		color: #00000;
+		font-weight: bold;
+		text-align: center;
+
+	}
+	.container
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		text-align: center;
+		padding: 12px;
+		background-color: 
+		border: 2px solid black;
+		box-shadow: 0 0 5px 3px #999;
+	}
+
+</style>
+<body>
+	<table class="container" cellpadding="20px">
+		<tr class = "info">
+			<td id ="days"></td>
+			<td id ="hrs"></td>
+			<td id ="min"></td>
+			<td id ="sec"></td>
+		</tr>
+		<tr>
+			<td>Days</td>
+			<td>Hours</td>
+			<td>Minutes</td>
+			<td>Seconds</td>
+		</tr> 
+	</table>
+  <div id = "clockDisplay" class = "clockStyle"></div>
+<script type = "text/javascript" language="javascript">
+function countDown()
+{
+	var today  = new Date();
+	var eventDate  = new Date("January 1,2020 00:00:00");
+	var currentTime = today.getTime();
+	var eventTime = eventDate.getTime();
+	var remTime = eventTime - currentTime;
+
+	var sec = Math.floor(remTime/1000);
+	var min = Math.floor(sec/60);
+	var hrs = Math.floor(min/60);
+	var days = Math.floor(hrs/24);
+
+	hrs = hrs % 24;
+	min%=60;
+	sec%=60; 
+
+	if(hrs == 0)
+	{
+		hrs = 12;
+
+	}
+	else if (hrs>12){
+	hrs = hrs-12;
+	diem = "PM";
+    }
+    if(hrs<10) {
+    hrs = "0"+ hrs;
+    }
+    if(min<10) {
+    min = "0"+ min;
+    }
+    if(sec<10) {
+    sec = "0"+ sec;
+    }
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hrs").innerHTML = hrs;
+    document.getElementById("min").innerHTML = min;
+    document.getElementById("sec").innerHTML = sec;
+
+    setTimeout(countDown,1000);
+
+}
+    countDown();
+</script>
+</body>
+</html>
